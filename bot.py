@@ -48,7 +48,8 @@ rooms = matrix_bot.get_rooms()
 
 for chan_id, room_id in config.mappings:
     client.add_event_handler(
-        lambda x: send_to_matrix(x, rooms[room_id], matrix_bot),
+        lambda x, room_id=room_id: send_to_matrix(x, rooms[room_id],
+                                                  matrix_bot),
         events.NewMessage(chats=[chan_id])
     )
 
